@@ -46,13 +46,13 @@ refs.searchBox.addEventListener('input', debounce(onInputCountry, DEBOUNCE_DELAY
 
 function onInputCountry() {
   const countryName = refs.searchBox.value;
-  if (countryName === '') {
+  if (countryName.trim() === '') {
     refs.countryInfo.innerHTML = '';
     refs.countryList.innerHTML = '';
     return;
   }
 
-  fetchCountries(countryName)
+  fetchCountries(countryName.trim())
     .then(countrys => {
       if (countrys.length > 10) {
         Notify.info('Too many matches found. Please enter a more specific name.');
